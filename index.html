@@ -46,7 +46,7 @@
         /* Grain overlay */
         body::before {
             content: '';
-            position: static;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -59,22 +59,23 @@
 
         /* Header */
         header {
-            position: static;            
+            position: relative;
+            top: 0;
             left: 0;
             right: 0;
             z-index: 100;
             padding: 0 3rem;
-            display: static;
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, var(--cream) 0%, var(--cream) 60%, transparent 100%);
+            background: var(--cream);
             transition: all 0.3s ease;
         }
 
         .logo {
             display: flex;
-            align-items: Left;
-            gap: 0.1rem;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .logo img {
@@ -144,10 +145,10 @@
 
         /* Hero */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            padding: 8rem 3rem 4rem;
+            padding: 3rem 3rem 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -953,7 +954,7 @@
             }
 
             .hero {
-                padding: 6rem 1.5rem 3rem;
+                padding: 2rem 1.5rem 3rem;
             }
 
             .hero h1 {
@@ -1185,17 +1186,6 @@
         <div class="invitation-container">
             <p class="invitation-quote">Ur-BAM is not a charity. We aim to build durable enterprises that create jobs, train local residents, and keep value circulating inside the neighborhoods they serve.</p>
             <p class="invitation-text">If you are building—or investing in—enterprises that strengthen neighborhoods from the inside out, Ur-BAM exists to walk with you: not as a donor network, not as a program, but as a community committed to businesses that belong to the places they serve.</p>
-            <div class="invitation-cta">
-                <a href="https://ur-bam.com" class="btn-primary">
-                    Visit Ur-BAM.com
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                </a>
-                <a href="#summit" class="btn-secondary">Register for Summit</a>
-            </div>
         </div>
     </section>
 
