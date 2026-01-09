@@ -145,12 +145,47 @@
             box-shadow: 0 4px 12px rgba(45, 74, 62, 0.3);
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 101;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Hero */
         .hero {
             min-height: 80vh;
             display: flex;
             align-items: center;
-            padding: 3rem 3rem 4rem;
+            padding: 0 3rem 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -209,7 +244,7 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: var(--terracotta);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
             padding: 0.5rem 1rem;
             background: rgba(199, 91, 57, 0.1);
             border-radius: 2rem;
@@ -483,7 +518,7 @@
 
         .what-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -650,6 +685,74 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.05);
         }
 
+        .contact-top-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-top-row .contact-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid var(--sand);
+            transition: all 0.3s ease;
+        }
+
+        .contact-top-row .contact-item:hover {
+            border-color: var(--terracotta);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-top-row .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--terracotta), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-top-row .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--warm-white);
+        }
+
+        .contact-top-row .contact-item h4 {
+            font-size: 1rem;
+            color: var(--charcoal);
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-top-row .contact-item a {
+            color: var(--terracotta);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .contact-top-row .contact-item a:hover {
+            color: var(--terracotta-dark);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .contact-top-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Summit Section */
         .summit-section {
             padding: 6rem 3rem;
@@ -766,13 +869,35 @@
         /* Invitation Section */
         .invitation-section {
             padding: 6rem 3rem;
-            background: linear-gradient(135deg, var(--sand) 0%, var(--cream) 100%);
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 60%;
+            height: 200%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
         }
 
         .invitation-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .invitation-container h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            color: var(--warm-white);
+            margin-bottom: 1.5rem;
         }
 
         .invitation-quote {
@@ -797,12 +922,23 @@
         }
 
         .invitation-text {
-            font-size: 1.15rem;
-            color: var(--warm-gray);
-            margin-bottom: 2.5rem;
+            font-size: 1.25rem;
+            color: var(--warm-white);
+            opacity: 0.9;
+            margin-bottom: 0;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .invitation-section .btn-primary {
+            background: var(--terracotta);
+            color: var(--warm-white);
+        }
+
+        .invitation-section .btn-primary:hover {
+            background: var(--terracotta-dark);
         }
 
         .invitation-cta {
@@ -944,15 +1080,47 @@
         @media (max-width: 768px) {
             header {
                 padding: 0 1.5rem;
-                justify-content: center;
+                justify-content: space-between;
             }
 
-            nav {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            nav#main-nav {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                z-index: 100;
+            }
+
+            nav#main-nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--sand);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            nav .nav-cta {
+                margin-top: 1rem;
+                text-align: center;
             }
 
             .logo img {
-                height: 200px;
+                height: 150px;
             }
 
             .hero {
@@ -960,7 +1128,7 @@
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .problem-section,
@@ -1000,14 +1168,32 @@
     </style>
 </head>
 <body>
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById('main-nav');
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                btn.classList.remove('active');
+            } else {
+                nav.classList.add('active');
+                btn.classList.add('active');
+            }
+        }
+    </script>
     <header>
         <div class="logo">
             <img src="logo.png" alt="Ur-BAM - Love Your Neighborhood">
         </div>
-        <nav>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
             <a href="#about">About</a>
             <a href="#what-we-do">What We Do</a>
-            <a href="#signup">Stay Updated</a>
+            <a href="#contact">Contact</a>
             <a href="#summit" class="nav-cta">Summit 2026</a>
         </nav>
     </header>
@@ -1022,8 +1208,9 @@
         </svg>
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Locally Owned Enterprise for <span>Lasting Renewal</span></h1>
-                <p class="hero-description">Ur-BAM is a business network and investment platform helping launch and scale locally owned enterprises in cities and small towns—building durable businesses that create jobs, train residents, and keep value circulating in the neighborhoods they serve.</p>
+                <span class="tagline">Urban - Business as Mission</span>
+                <h1>Transforming our business mindset into a <span>lifestyle of mission.</span></h1>
+                <p class="hero-description">Ur-BAM is a growing network of families, practitioners, and partners committed to restoring neglected towns and inner-city neighborhoods through faithful presence, honest work, and long-term commitment.</p>
                 <div class="hero-buttons">
                     <a href="#summit" class="btn-primary">
                         Join the Summit
@@ -1042,10 +1229,12 @@
         <div class="section-container">
             <div class="problem-grid">
                 <div class="problem-text">
-                    <h2>The Challenge We're Addressing</h2>
-                    <p>Across cities and small towns stand boarded-up storefronts, vacant homes, idle schools, and abandoned industrial buildings. These places are rich with history, people, and potential—yet they're often overlooked or approached with short-term solutions that unintentionally foster dependency rather than dignity.</p>
+                    <h2>Why This Initiative?</h2>
+                    <p>Across cities and small towns stand boarded-up storefronts, vacant homes, idle schools, and abandoned industrial buildings. These places are rich with history, people, and potential.</p>
                     <br>
-                    <p>Meanwhile, many Anabaptist communities possess capital, trades, skills, and families who want to live meaningful, rooted lives—but lack clear pathways to deploy those gifts in ways that lead to lasting, locally owned renewal.</p>
+                    <p>At the same time, many Christian communities possess capital, trades, skills, and families who want to live meaningful lives, with the purpose to build the Kingdom of God—but often lack clear pathways to deploy those gifts in ways that lead to lasting, locally owned Christ centered organizations.</p>
+                    <br>
+                    <p><strong>Ur-BAM exists to make the connections that close this gap.</strong></p>
                 </div>
                 <div class="problem-cards">
                     <div class="problem-card">
@@ -1057,7 +1246,7 @@
                         </div>
                         <div>
                             <h4>No Clear On-Ramps</h4>
-                            <p>Tradespeople and entrepreneurs lack pathways into urban and small-town markets</p>
+                            <p>Clear on-ramps with vision into urban and small-town markets</p>
                         </div>
                     </div>
                     <div class="problem-card">
@@ -1070,7 +1259,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h4>Missing Partnerships</h4>
+                            <h4>Trusted Local Partnerships</h4>
                             <p>Trusted local partnerships are rare and hard to establish</p>
                         </div>
                     </div>
@@ -1082,7 +1271,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h4>Impatient Capital</h4>
+                            <h4>Patient Capital</h4>
                             <p>Patient capital aligned with long-term outcomes is scarce</p>
                         </div>
                     </div>
@@ -1094,40 +1283,75 @@
     <section class="what-section" id="what-we-do">
         <div class="section-container">
             <div class="what-header">
-                <h2>What We Do</h2>
-                <p>Ur-BAM exists to close the gap—connecting practitioners with viable business models and aligned investors with grounded, place-based opportunities.</p>
+                <h2>What Is Ur-BAM?</h2>
+                <p>Ur-BAM is a growing network of families, practitioners, and partners committed to restoring neglected towns and inner-city neighborhoods through faithful presence, honest work, and long-term commitment. We aim to encourage and empower families to integrate their lives and businesses into needy communities in ways that keep value circulating inside the neighborhoods they serve.</p>
             </div>
             <div class="what-grid">
                 <div class="what-card">
                     <span class="what-card-number">01</span>
-                    <h3>Identify & Support</h3>
-                    <p>We find and support practitioners in trades, housing, food systems, services, and light manufacturing.</p>
+                    <h3>Connect</h3>
+                    <p>Link entrepreneurs, tradespeople, and investors with place-based business opportunities.</p>
                 </div>
                 <div class="what-card">
                     <span class="what-card-number">02</span>
-                    <h3>Vet & Connect</h3>
-                    <p>We vet opportunities and connect mission-aligned investors to place-based enterprises.</p>
+                    <h3>Convene</h3>
+                    <p>Host gatherings and site visits to share proven models and cast vision.</p>
                 </div>
                 <div class="what-card">
                     <span class="what-card-number">03</span>
-                    <h3>Gather & Learn</h3>
-                    <p>We host practitioner gatherings, site visits, and case studies to share what works.</p>
-                </div>
-                <div class="what-card">
-                    <span class="what-card-number">04</span>
-                    <h3>Explore Structures</h3>
-                    <p>We develop aligned investment structures—equity partnerships, revenue-share models, and patient capital.</p>
+                    <h3>Empower</h3>
+                    <p>Connect businesses with patient investors through equity and revenue-shared models.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="signup-section" id="signup">
-        <div class="signup-container">
+    <section class="invitation-section">
+        <div class="invitation-container">
+            <h2>Invitation</h2>
+            <p class="invitation-text">If you are considering moving into small towns or urban neighborhoods, Ur-BAM exists to walk with you as a community committed to businesses that build the Kingdom of God and bring value, stability, and Jesus' sacrificial love to the places they serve.</p>
+            <a href="#contact" class="btn-primary" style="margin-top: 1.5rem;">
+                Join the Community
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="signup-section" id="contact">
+        <div class="signup-container" style="max-width: 1000px;">
             <div class="signup-header">
-                <h2>Stay Updated</h2>
+                <h2>Stay Connected</h2>
                 <p>Sign up to receive news about Ur-BAM, upcoming events, and opportunities to get involved.</p>
             </div>
+            
+            <div class="contact-top-row">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:connect.urbam@gmail.com">connect.urbam@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="var(--warm-white)">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Telegram</h4>
+                        <a href="https://t.me/+khy42YVgZ2syNjdh" target="_blank">Join our Telegram community</a>
+                    </div>
+                </div>
+            </div>
+            
             <div class="signup-form">
                 <iframe
                     id="JotFormIFrame-260065661367055"
@@ -1152,9 +1376,9 @@
             <div class="summit-content">
                 <div class="summit-info">
                     <span class="summit-badge">Save the Date</span>
-                    <h2 class="summit-title-large">Ur-BAM Summit </h2>
+                    <h2 class="summit-title-large">Ur-BAM Summit</h2>
                     <h2 class="summit-title-large">Summer 2026</h2>
-                    
+                    <p class="summit-date-large">Lancaster, PA</p>
                 </div>
                 <div class="summit-details-large">
                     <h3>What to Expect</h3>
@@ -1162,19 +1386,9 @@
                         <li>Network with existing practitioners</li>
                         <li>Tour existing businesses</li>
                         <li>Share case studies and learn what works</li>
-                        <li>Explore aligned investment structures</li>
                     </ul>
-                    
-                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="invitation-section">
-        <div class="invitation-container">
-            <p class="invitation-quote">Ur-BAM is not a charity. We aim to build durable enterprises that create jobs, train local residents, and keep value circulating inside the neighborhoods they serve.</p>
-            <p class="invitation-text">If you are building—or investing in—enterprises that strengthen neighborhoods from the inside out, Ur-BAM exists to walk with you: not as a donor network, not as a program, but as a community committed to businesses that belong to the places they serve.</p>
         </div>
     </section>
 
@@ -1185,7 +1399,7 @@
                     <img src="logo-footer.png" alt="Ur-BAM - Love Your Neighborhood" style="height: 180px; width: auto;">
                 </div>
                 <p class="footer-tagline">Love your neighborhood.</p>
-                <p class="footer-description">A business network and investment platform building durable enterprises that belong to the places they serve.</p>
+                <p class="footer-description">Ur-BAM is a platform that builds vision for locally owned enterprises in cities and small towns. We aim to encourage families to integrate their lives and businesses into needy communities - And Love Your Neighborhood.</p>
             </div>
             <div class="footer-links">
                 <h4>Learn More</h4>
@@ -1195,7 +1409,7 @@
             </div>
             <div class="footer-links">
                 <h4>Connect</h4>
-                <a href="https://ur-bam.com">Contact Us</a>
+                <a href="#contact">Contact Us</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1205,6 +1419,16 @@
     </footer>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Close menu when clicking a link
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('main-nav');
+                const btn = document.querySelector('.mobile-menu-btn');
+                nav.classList.remove('active');
+                btn.classList.remove('active');
+            });
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
